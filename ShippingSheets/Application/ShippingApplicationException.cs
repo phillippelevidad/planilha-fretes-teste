@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace ShippingSheets.Application.CalculateShipping
+namespace ShippingSheets.Application
 {
     public class ShippingApplicationException : Exception
     {
