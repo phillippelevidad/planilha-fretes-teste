@@ -6,7 +6,7 @@ namespace ShippingSheets.Application
 {
     public interface IShippingQueries
     {
-        Task<ReadOnlyCollection<ShippingRuleDto>> ListMatchingRulesAsync(int fromZipCode, int weightGrams, double volume);
+        Task<ReadOnlyCollection<ShippingRuleDto>> ListMatchingRulesAsync(int toZipCode, int weightGrams, double volume);
     }
 
     public class ShippingRuleDto

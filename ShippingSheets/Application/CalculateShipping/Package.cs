@@ -26,7 +26,7 @@ namespace ShippingSheets.Application.CalculateShipping
 
         public int Weight => (int)Math.Ceiling(weight);
         public double Volume { get; private set; }
-        public int PriceCents => items.Sum(item => item.PriceCents);
+        public decimal Price => items.Sum(item => item.Price);
         public ReadOnlyCollection<PackageItem> Items => items.AsReadOnly();
 
         public Package AddItem(PackageItem item)
@@ -66,16 +66,16 @@ namespace ShippingSheets.Application.CalculateShipping
 
     public class PackageItem
     {
-        public PackageItem(int priceCents, int weightGrams, int lengthCentimeters, int widthCentimeters, int heightCentimeters)
+        public PackageItem(decimal price, int weightGrams, int lengthCentimeters, int widthCentimeters, int heightCentimeters)
         {
-            PriceCents = priceCents;
+            Price = price;
             Weight = weightGrams;
             Length = lengthCentimeters;
             Width = widthCentimeters;
             Height = heightCentimeters;
         }
 
-        public int PriceCents { get; }
+        public decimal Price { get; }
         public int Weight { get; }
         public int Length { get; }
         public int Width { get; }

@@ -8,26 +8,26 @@ namespace ShippingSheets.Application.CalculateShipping
 {
     public class CalculateShippingQuery : IRequest<CalculateShippingResult>
     {
-        public CalculateShippingQuery(int fromZipCode, Package package)
+        public CalculateShippingQuery(int toZipCode, Package package)
         {
-            FromZipCode = fromZipCode;
+            ToZipCode = toZipCode;
             Weight = new Weight(package.Weight);
             Volume = package.Volume;
-            PriceCents = package.PriceCents;
+            Price = package.Price;
         }
 
-        public CalculateShippingQuery(int fromZipCode, int weightInGrams, double volume, int priceCents)
+        public CalculateShippingQuery(int toZipCode, int weightInGrams, double volume, decimal price)
         {
-            FromZipCode = fromZipCode;
+            ToZipCode = toZipCode;
             Weight = weightInGrams;
             Volume = volume;
-            PriceCents = priceCents;
+            Price = price;
         }
 
-        public int FromZipCode { get; }
+        public int ToZipCode { get; }
         public int Weight { get; }
         public double Volume { get; }
-        public int PriceCents { get; }
+        public decimal Price { get; }
     }
 
     public class CalculateShippingQueryHandler : IRequestHandler<CalculateShippingQuery, CalculateShippingResult>
@@ -41,19 +41,19 @@ namespace ShippingSheets.Application.CalculateShipping
 
         public async Task<CalculateShippingResult> Handle(CalculateShippingQuery request, CancellationToken cancellationToken)
         {
-            var rules = await shippingQueries.ListMatchingRulesAsync(request.FromZipCode, request.Weight, request.Volume);
+            var rules = await shippingQueries.ListMatchingRulesAsync(request.ToZipCode, request.Weight, request.Volume);
 
             var shippings = rules.Select(rule => new ShippingResultItem(
                 rule.MethodName,
-                GetPrice(rule.PriceCents, request.PriceCents, rule.AdValorem),
+                GetPrice(rule.PriceCents, request.Price, rule.AdValorem),
                 rule.DeliveryTimeDays));
 
             return new CalculateShippingResult(shippings);
         }
 
-        private decimal GetPrice(int shippingPriceCents, int productPriceCents, double adValorem)
+        private decimal GetPrice(int shippingPriceCents, decimal productPrice, double adValorem)
         {
-            return (shippingPriceCents / 100m) + (productPriceCents / 100m * (decimal)adValorem);
+            return (shippingPriceCents / 100m) + (productPrice * (decimal)adValorem);
         }
     }
 }

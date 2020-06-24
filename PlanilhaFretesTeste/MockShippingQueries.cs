@@ -18,14 +18,14 @@ namespace PlanilhaFretesTeste
             this.repository = repository as MockShippingRepository ?? throw new ArgumentException("For the purposes of testing, MockShippingQueries requires an instance of MockingShippingRepository.", nameof(repository));
         }
 
-        public Task<ReadOnlyCollection<ShippingRuleDto>> ListMatchingRulesAsync(int fromZipCode, int weightGrams, double volume)
+        public Task<ReadOnlyCollection<ShippingRuleDto>> ListMatchingRulesAsync(int toZipCode, int weightGrams, double volume)
         {
-            var origin = new ZipCode(fromZipCode);
+            var destination = new ZipCode(toZipCode);
             var weight = new Weight(weightGrams);
 
             var items = repository.GetAllMethods()
                 .SelectMany(method => method.Rules.Select(rule => new KeyValuePair<string, ShippingRule>(method.Name, rule)))
-                .Where(item => origin.IsInRange(item.Value.RangeFrom, item.Value.RangeTo))
+                .Where(item => destination.IsInRange(item.Value.RangeFrom, item.Value.RangeTo))
                 .Where(item => weight.IsInRange(item.Value.MinWeight, item.Value.MaxWeight))
                 .Where(item => volume <= item.Value.MaxVolume)
                 .Select(item => new ShippingRuleDto
