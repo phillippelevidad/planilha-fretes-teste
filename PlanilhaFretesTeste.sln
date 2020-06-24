@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanilhaFretesTeste", "PlanilhaFretesTeste\PlanilhaFretesTeste.csproj", "{3E2488A7-4710-468C-B6A4-1CF914A19194}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShippingSheets", "ShippingSheets\ShippingSheets.csproj", "{CC6C93B3-09C5-4172-B2B3-C579154A0D1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E2488A7-4710-468C-B6A4-1CF914A19194}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E2488A7-4710-468C-B6A4-1CF914A19194}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E2488A7-4710-468C-B6A4-1CF914A19194}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E2488A7-4710-468C-B6A4-1CF914A19194}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC6C93B3-09C5-4172-B2B3-C579154A0D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC6C93B3-09C5-4172-B2B3-C579154A0D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC6C93B3-09C5-4172-B2B3-C579154A0D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC6C93B3-09C5-4172-B2B3-C579154A0D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B724D10-1D0E-42D5-B55C-4CA3AA17F137}
+	EndGlobalSection
+EndGlobal
